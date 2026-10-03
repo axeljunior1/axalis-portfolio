@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXALIS — Vos idées. Nos solutions.</title>
+<meta name="description" content="AXALIS accompagne les entreprises et les porteurs de projets dans la création d'applications, l'automatisation de leurs activités et le renforcement de leurs équipes techniques.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --navy-950:#0A1B2F;
+    --navy-900:#0F2A47;
+    --navy-800:#17385C;
+    --orange-500:#E8752B;
+    --orange-400:#F2944F;
+    --orange-100:#FBE7D8;
+    --neutral-400:#C9C2B6;
+    --bg:#FFFFFF;
+    --surface:#FFFFFF;
+    --surface-2:#F8F6F3;
+    --ink:#17263A;
+    --muted:#73695F;
+    --line:#EAE5DD;
+    --shadow: 0 1px 2px rgba(20,16,10,.04), 0 10px 24px -16px rgba(20,16,10,.10);
+    color-scheme: light;
+  }
+  /* Identité volontairement claire uniquement : le thème sombre du système
+     n'est pas suivi, pour garantir un fond blanc quel que soit l'appareil. */
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora', ui-sans-serif, system-ui, sans-serif;
+    text-wrap:balance;
+    margin:0;
+    color:var(--ink);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .mono{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    letter-spacing:.06em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--orange-500);
+  }
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  img,svg{max-width:100%;display:block;}
+  section{position:relative;}
+  .on-dark{color:#F3F7FC;}
+  .on-dark .muted{color:#AEC0D6;}
+
+  /* ---------- Logo ---------- */
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-word{font-family:'Sora';font-weight:800;font-size:1.15rem;letter-spacing:.01em;color:var(--ink);}
+  .logo-word b{color:var(--orange-500);}
+  .logo-tag{font-family:'IBM Plex Mono';font-size:.56rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;display:block;margin-top:1px;}
+  .logo.on-dark .logo-word{color:#fff;}
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:24px;}
+  .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    font-size:.86rem;font-weight:500;text-decoration:none;color:var(--muted);
+    transition:color .15s;
+  }
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--orange-500);}
+  .nav-cta{
+    font-size:.82rem;font-weight:600;padding:9px 18px;border-radius:7px;
+    background:var(--navy-900);color:#fff;text-decoration:none;white-space:nowrap;
+    transition:background .15s;
+  }
+  .nav-cta:hover,.nav-cta:focus-visible{background:var(--orange-500);}
+  .nav-toggle{display:none;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Sans';font-weight:600;font-size:.92rem;
+    padding:13px 22px;border-radius:8px;text-decoration:none;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .15s, background .15s, border-color .15s, color .15s;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--orange-500);color:#fff;}
+  .btn-primary:hover,.btn-primary:focus-visible{background:var(--orange-400);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--orange-500);color:var(--orange-500);}
+  .btn-ghost.on-dark{color:#fff;border-color:rgba(255,255,255,.28);}
+  .btn-ghost.on-dark:hover{border-color:var(--orange-400);color:var(--orange-400);}
+  :focus-visible{outline:2px solid var(--orange-500);outline-offset:2px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:76px 0 96px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero-arc{
+    position:absolute;top:-160px;right:-160px;width:420px;height:420px;
+    border-radius:50%;border:1.5px solid var(--orange-500);opacity:.3;
+    pointer-events:none;
+  }
+  .hero-arc::after{
+    content:"";position:absolute;inset:34px;border-radius:50%;border:1.5px solid var(--orange-400);opacity:.35;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;
+    position:relative;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono';font-size:.72rem;font-weight:600;letter-spacing:.08em;
+    color:var(--navy-900);background:var(--surface-2);border:1px solid var(--line);
+    padding:6px 12px;border-radius:999px;text-transform:uppercase;
+  }
+  .hero h1{font-size:clamp(2.3rem, 4.2vw, 3.4rem);line-height:1.08;margin-top:18px;}
+  .hero h1 .accent{color:var(--orange-500);}
+  .hero p.lead{font-size:1.08rem;color:var(--muted);max-width:46ch;margin-top:20px;}
+  .hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+
+  /* fake app mockup */
+  .mock{
+    background:var(--surface);border-radius:16px;padding:18px;
+    border:1px solid var(--line);box-shadow:var(--shadow);position:relative;
+  }
+  .mock-bar{display:flex;gap:6px;margin-bottom:14px;}
+  .mock-dot{width:9px;height:9px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);}
+  .mock-body{display:grid;grid-template-columns:84px 1fr;gap:12px;}
+  .mock-side{display:flex;flex-direction:column;gap:10px;}
+  .mock-side i{height:9px;border-radius:4px;background:var(--surface-2);}
+  .mock-side i:first-child{background:var(--orange-500);}
+  .mock-main{display:flex;flex-direction:column;gap:10px;}
+  .mock-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .mock-stat{background:var(--surface-2);border-radius:8px;padding:10px;}
+  .mock-stat b{display:block;font-family:'Sora';color:var(--ink);font-size:1rem;}
+  .mock-stat span{font-size:.62rem;color:var(--muted);font-family:'IBM Plex Mono';}
+  .mock-chart{background:var(--surface-2);border-radius:8px;padding:12px;display:flex;align-items:flex-end;gap:5px;height:84px;}
+  .mock-chart i{flex:1;background:var(--orange-500);border-radius:3px 3px 0 0;opacity:.85;}
+  .mock-chart i:nth-child(2n){background:var(--neutral-400);opacity:.8;}
+  .mock-rows{background:var(--surface-2);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:7px;}
+  .mock-rows i{height:7px;border-radius:3px;background:var(--line);}
+  .mock-rows i:nth-child(1){width:88%;} .mock-rows i:nth-child(2){width:64%;} .mock-rows i:nth-child(3){width:74%;}
+  .mock-phone{
+    position:absolute;bottom:-26px;left:-30px;width:108px;background:var(--surface);
+    border-radius:14px;padding:8px;box-shadow:var(--shadow);border:1px solid var(--line);
+  }
+  .mock-phone .ph-screen{background:var(--surface-2);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:5px;border:1px solid var(--line);}
+  .mock-phone .ph-screen i{height:5px;border-radius:2px;background:var(--line);}
+  .mock-phone .ph-screen i:first-child{background:var(--orange-500);width:40%;}
+
+  /* ---------- Section scaffolding ---------- */
+  .section{padding:88px 0;border-top:1px solid var(--line);}
+  .hero + .section{border-top:none;}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.6rem,2.6vw,2.2rem);margin-top:10px;}
+  .section-head p{color:var(--muted);margin-top:14px;font-size:1.02rem;}
+
+  /* ---------- Besoins (3 doors) ---------- */
+  .doors{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .door{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:28px 24px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:14px;
+    text-decoration:none;color:var(--ink);
+    transition:border-color .15s, transform .15s;
+  }
+  .door:hover,.door:focus-visible{border-color:var(--orange-500);transform:translateY(-3px);}
+  .door-icon{
+    width:42px;height:42px;border-radius:10px;background:var(--surface-2);
+    display:flex;align-items:center;justify-content:center;color:var(--orange-500);
+  }
+  .door h3{font-size:1.08rem;}
+  .door p{color:var(--muted);font-size:.93rem;}
+  .door .go{margin-top:auto;font-family:'IBM Plex Mono';font-size:.76rem;font-weight:600;color:var(--orange-500);}
+
+  /* ---------- Solutions (4 axes) ---------- */
+  .axes{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .axis{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:24px 20px;display:flex;flex-direction:column;gap:12px;
+  }
+  .axis-num{font-family:'IBM Plex Mono';font-size:.72rem;color:var(--orange-500);font-weight:600;}
+  .axis h3{font-size:1rem;line-height:1.3;}
+  .axis p{color:var(--muted);font-size:.89rem;flex:1;}
+  .axis a{font-family:'IBM Plex Mono';font-size:.74rem;font-weight:600;color:var(--navy-900);text-decoration:none;}
+  .axis a:hover{color:var(--orange-500);}
+
+  /* ---------- Difference ---------- */
+  .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .diff-flow{display:flex;align-items:center;gap:10px;margin:26px 0 30px;flex-wrap:wrap;}
+  .flow-step{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    padding:10px 14px;font-family:'IBM Plex Mono';font-size:.74rem;font-weight:600;color:var(--navy-900);
+    display:flex;align-items:center;gap:8px;
+  }
+  .flow-step svg{color:var(--orange-500);}
+  .flow-arrow{color:var(--muted);font-size:1.1rem;}
+  .scenarios{display:flex;flex-direction:column;gap:16px;}
+  .scenario{display:flex;gap:14px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;}
+  .scenario .ico{width:36px;height:36px;border-radius:9px;background:var(--surface-2);flex:none;display:flex;align-items:center;justify-content:center;color:var(--orange-500);}
+  .scenario h4{font-size:.95rem;margin-bottom:4px;}
+  .scenario p{font-size:.87rem;color:var(--muted);}
+
+  /* ---------- Réalisations ---------- */
+  .demo-note{
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;
+    font-family:'IBM Plex Mono';font-size:.72rem;font-weight:600;color:var(--muted);
+  }
+  .demo-note .dot{width:7px;height:7px;border-radius:50%;background:var(--orange-500);}
+  .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .project{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+  .project-visual{height:140px;background:var(--surface-2);border-bottom:1px solid var(--line);position:relative;padding:16px;}
+  .project-tag{
+    position:absolute;top:10px;right:10px;font-family:'IBM Plex Mono';font-size:.62rem;
+    background:var(--orange-500);color:#fff;padding:3px 9px;border-radius:999px;font-weight:600;letter-spacing:.05em;
+  }
+  .project-body{padding:20px;}
+  .project-body h3{font-size:1.02rem;margin-bottom:10px;}
+  .project-meta{display:flex;flex-direction:column;gap:8px;font-size:.85rem;}
+  .project-meta div{color:var(--muted);}
+  .project-meta b{color:var(--ink);font-weight:600;}
+
+  /* stock viz */
+  .viz-stock{display:flex;align-items:flex-end;gap:6px;height:100%;}
+  .viz-stock i{flex:1;background:var(--orange-500);border-radius:3px 3px 0 0;opacity:.85;}
+  .viz-stock i:nth-child(odd){background:var(--neutral-400);opacity:.9;}
+  /* calendar viz */
+  .viz-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;height:100%;align-content:center;}
+  .viz-cal i{aspect-ratio:1;border-radius:3px;background:var(--line);}
+  .viz-cal i.on{background:var(--orange-500);}
+  /* dashboard viz */
+  .viz-dash{display:grid;grid-template-columns:1fr 1fr;gap:6px;height:100%;}
+  .viz-dash .big{grid-row:span 2;background:var(--surface);border:1px solid var(--line);border-radius:6px;display:flex;align-items:flex-end;padding:6px;gap:3px;}
+  .viz-dash .big i{flex:1;background:var(--orange-400);border-radius:2px 2px 0 0;}
+  .viz-dash .sm{background:var(--surface);border:1px solid var(--line);border-radius:6px;}
+
+  /* ---------- Approche ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:step;margin-bottom:52px;}
+  .step{position:relative;padding:0 20px 0 0;}
+  .step:not(:last-child)::after{
+    content:"";position:absolute;top:19px;right:-2px;width:calc(100% - 40px);height:2px;
+    background:var(--line);
+  }
+  .step-num{
+    width:38px;height:38px;border-radius:50%;background:var(--navy-900);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:.92rem;
+    position:relative;z-index:1;
+  }
+  .step h4{margin-top:16px;font-size:.98rem;}
+  .step p{margin-top:6px;font-size:.86rem;color:var(--muted);}
+  .commitments{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .commit{
+    display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--surface);
+    border:1px solid var(--line);border-radius:10px;font-size:.84rem;font-weight:600;
+  }
+  .commit svg{color:var(--orange-500);flex:none;}
+
+  /* ---------- About ---------- */
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .person{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;gap:18px;}
+  .avatar{
+    width:58px;height:58px;border-radius:50%;flex:none;
+    background:linear-gradient(135deg,var(--navy-900),var(--orange-500));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora';font-weight:700;
+  }
+  .person h3{font-size:1.02rem;}
+  .person .role{font-family:'IBM Plex Mono';font-size:.72rem;color:var(--orange-500);margin:4px 0 10px;text-transform:uppercase;letter-spacing:.06em;}
+  .person p.bio{font-size:.87rem;color:var(--muted);}
+  .person .loc{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.78rem;color:var(--muted);}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .field label{font-size:.82rem;font-weight:600;}
+  .field input,.field textarea{
+    font-family:'IBM Plex Sans';font-size:.94rem;padding:11px 13px;border-radius:8px;
+    border:1px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical;
+  }
+  .field input:focus,.field textarea:focus{border-color:var(--orange-500);outline:none;}
+  .contact-direct{display:flex;flex-direction:column;gap:14px;}
+  .contact-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;}
+  .contact-row .ico{color:var(--orange-500);flex:none;}
+  .contact-row b{display:block;font-size:.95rem;}
+  .contact-row span{font-size:.82rem;color:var(--muted);}
+  .form-note{margin-top:12px;font-size:.8rem;color:var(--muted);}
+  .thanks{display:none;padding:14px 16px;background:var(--surface-2);border-radius:10px;font-size:.88rem;margin-top:10px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 0 28px;}
+  .foot-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+  .foot-links{display:flex;gap:22px;list-style:none;padding:0;margin:0;flex-wrap:wrap;}
+  .foot-links a{font-size:.84rem;color:var(--muted);text-decoration:none;}
+  .foot-links a:hover{color:var(--orange-500);}
+  .foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .mock{margin-top:40px;}
+    .doors{grid-template-columns:1fr;}
+    .axes{grid-template-columns:1fr 1fr;}
+    .diff-grid{grid-template-columns:1fr;}
+    .projects{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr 1fr;row-gap:28px;}
+    .step:nth-child(2)::after{display:none;}
+    .commitments{grid-template-columns:1fr 1fr;}
+    .people{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .section{padding:64px 0;}
+  }
+  @media (max-width:560px){
+    .axes{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .commitments{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <div class="wrap nav-row">
+    <a class="logo" href="#accueil">
+      <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 34L20 6L22.5 6L17 34L14 34Z" fill="var(--navy-900)"/>
+        <path d="M24 34L18 6L20.5 6L26.5 34L24 34Z" fill="var(--orange-500)"/>
+      </svg>
+      <span>
+        <span class="logo-word">AXAL<b>I</b>S</span>
+        <span class="logo-tag">Digital solutions &amp; development</span>
+      </span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#besoins">Besoins</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#difference">Différence</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#approche">Approche</a></li>
+        <li><a href="#apropos">À propos</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#contact">Parlons de votre projet</a>
+  </div>
+</header>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="accueil">
+  <div class="hero-arc" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge">Cameroun · Europe</span>
+      <h1>Vos idées.<br><span class="accent">Nos solutions.</span></h1>
+      <p class="lead">AXALIS accompagne les entreprises et les porteurs de projets dans la création d'applications, l'automatisation de leurs activités et le renforcement de leurs équipes techniques.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Parlons de votre projet</a>
+        <a class="btn btn-ghost" href="#solutions">Découvrir nos solutions</a>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <div class="mock">
+        <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+        <div class="mock-body">
+          <div class="mock-side"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="mock-main">
+            <div class="mock-stat-row">
+              <div class="mock-stat"><b>128</b><span>COMMANDES</span></div>
+              <div class="mock-stat"><b>94%</b><span>SYNC OK</span></div>
+              <div class="mock-stat"><b>12</b><span>EN LOCAL</span></div>
+            </div>
+            <div class="mock-chart">
+              <i style="height:40%"></i><i style="height:65%"></i><i style="height:35%"></i>
+              <i style="height:80%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:45%"></i>
+            </div>
+            <div class="mock-rows"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="mock-phone">
+          <div class="ph-screen"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. BESOINS ============ -->
+<section class="section" id="besoins">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Par où commencer</span>
+      <h2>Qu'aimeriez-vous simplifier dans votre activité&nbsp;?</h2>
+    </div>
+    <div class="doors">
+      <a class="door" href="#solutions">
+        <span class="door-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </span>
+        <h3>Lancer un projet</h3>
+        <p>Vous avez une idée de plateforme, de site ou d'application ? Donnons-lui une forme concrète.</p>
+        <span class="go">Voir les solutions →</span>
+      </a>
+      <a class="door" href="#solutions">
+        <span class="door-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 4v6"/></svg>
+        </span>
+        <h3>Mieux gérer votre entreprise</h3>
+        <p>Vos fichiers se multiplient et certaines tâches vous prennent trop de temps ? Construisons un outil adapté à votre fonctionnement.</p>
+        <span class="go">Voir les solutions →</span>
+      </a>
+      <a class="door" href="#solutions">
+        <span class="door-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c.6-3.4 3.2-5.4 6.5-5.4s5.9 2 6.5 5.4"/><circle cx="18" cy="8" r="2.4"/><path d="M15.6 14.8c2.6.3 4.3 2 4.8 4.9"/></svg>
+        </span>
+        <h3>Renforcer votre équipe</h3>
+        <p>Vous avez besoin de compétences supplémentaires pour faire avancer un projet ?</p>
+        <span class="go">Voir les solutions →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. SOLUTIONS ============ -->
+<section class="section" id="solutions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Nos solutions</span>
+      <h2>Quatre façons de faire avancer votre activité</h2>
+      <p>Chaque axe mène à un échange concret : vos besoins, les solutions possibles, des exemples, puis un devis.</p>
+    </div>
+    <div class="axes">
+      <div class="axis">
+        <span class="axis-num mono">01</span>
+        <h3>Applications web et mobiles</h3>
+        <p>Des sites, plateformes et applications conçus autour de vos utilisateurs et de vos objectifs.</p>
+        <a href="#contact">Discuter du besoin →</a>
+      </div>
+      <div class="axis">
+        <span class="axis-num mono">02</span>
+        <h3>Solutions métier et automatisation</h3>
+        <p>Centralisez vos informations, simplifiez vos opérations et réduisez les saisies répétitives.</p>
+        <a href="#contact">Discuter du besoin →</a>
+      </div>
+      <div class="axis">
+        <span class="axis-num mono">03</span>
+        <h3>Renfort technique</h3>
+        <p>Des compétences de développement pour accompagner votre équipe et faire avancer vos projets.</p>
+        <a href="#contact">Discuter du besoin →</a>
+      </div>
+      <div class="axis">
+        <span class="axis-num mono">04</span>
+        <h3>Maintenance et évolution</h3>
+        <p>Faites vivre vos outils avec du support, des sauvegardes et des évolutions adaptées à vos besoins.</p>
+        <a href="#contact">Discuter du besoin →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. DIFFÉRENCE ============ -->
+<section class="section" id="difference">
+  <div class="wrap">
+    <div class="diff-grid">
+      <div>
+        <span class="eyebrow">Notre différence</span>
+        <h2 style="margin-top:10px;font-size:clamp(1.6rem,2.6vw,2.2rem);">Votre activité continue.<br>Même lorsque la connexion ne suit pas.</h2>
+        <p style="color:var(--muted);margin-top:16px;">Une connexion instable ne devrait pas bloquer votre travail. Selon vos besoins, nous concevons des applications capables de fonctionner localement et de synchroniser les données lorsque la connexion revient.</p>
+
+        <div class="diff-flow" aria-hidden="true">
+          <span class="flow-step">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 9a16 16 0 0 1 22 0"/><path d="M5 13a10.5 10.5 0 0 1 14 0" opacity=".3"/><line x1="12" y1="20" x2="12" y2="20"/></svg>
+            Saisie hors ligne
+          </span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+            Stockage local
+          </span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+            Synchronisation
+          </span>
+        </div>
+      </div>
+
+      <div class="scenarios">
+        <div class="scenario">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M9 20v-6h6v6"/></svg></span>
+          <div><h4>Boutique</h4><p>La caisse continue d'enregistrer les ventes même sans réseau, puis se synchronise en fin de journée.</p></div>
+        </div>
+        <div class="scenario">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="1.5"/><path d="M7 7V4h10v3"/><path d="M8 13h3"/></svg></span>
+          <div><h4>Entrepôt</h4><p>L'inventaire est scanné zone par zone, sans dépendre d'une connexion stable sur place.</p></div>
+        </div>
+        <div class="scenario">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></span>
+          <div><h4>Équipe en déplacement</h4><p>Les rapports de terrain sont enregistrés localement, puis transmis dès le retour du signal.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. RÉALISATIONS ============ -->
+<section class="section" style="background:var(--surface-2);" id="realisations">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Réalisations</span>
+      <h2>Des solutions concrètes pour des besoins concrets.</h2>
+      <p>Découvrez comment nous abordons la gestion, l'automatisation et la création de services numériques.</p>
+    </div>
+    <div class="demo-note"><span class="dot"></span> Projets démonstratifs — nos références clients arrivent prochainement.</div>
+
+    <div class="projects">
+      <article class="project">
+        <div class="project-visual"><span class="project-tag">Démo</span>
+          <div class="viz-stock">
+            <i style="height:38%"></i><i style="height:70%"></i><i style="height:52%"></i><i style="height:85%"></i><i style="height:30%"></i><i style="height:60%"></i><i style="height:46%"></i>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Gestion de stock</h3>
+          <div class="project-meta">
+            <div><b>Besoin</b> — suivre les entrées/sorties sur plusieurs points de vente.</div>
+            <div><b>Solution</b> — app mobile de scan avec synchronisation différée.</div>
+          </div>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project-visual"><span class="project-tag">Démo</span>
+          <div class="viz-cal">
+            <i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i>
+            <i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Prise de rendez-vous</h3>
+          <div class="project-meta">
+            <div><b>Besoin</b> — réduire les appels et les oublis de créneaux.</div>
+            <div><b>Solution</b> — agenda en ligne avec rappels automatiques.</div>
+          </div>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project-visual"><span class="project-tag">Démo</span>
+          <div class="viz-dash">
+            <div class="big"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i></div>
+            <div class="sm"></div><div class="sm"></div>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Tableau de bord</h3>
+          <div class="project-meta">
+            <div><b>Besoin</b> — centraliser les indicateurs clés de l'activité.</div>
+            <div><b>Solution</b> — vue unique connectée aux outils existants.</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. APPROCHE ============ -->
+<section class="section" id="approche">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Notre approche</span>
+      <h2>Un projet clair, du premier échange à la mise en service.</h2>
+      <p>Nous commençons par comprendre votre activité, vos contraintes et vos priorités pour définir une solution utile et un périmètre réaliste.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><h4>Comprendre</h4><p>Votre activité, vos contraintes et vos priorités.</p></div>
+      <div class="step"><span class="step-num">2</span><h4>Définir</h4><p>Un périmètre réaliste et un besoin clairement posé.</p></div>
+      <div class="step"><span class="step-num">3</span><h4>Construire et valider</h4><p>Des étapes courtes, testées au fil de l'avancement.</p></div>
+      <div class="step"><span class="step-num">4</span><h4>Accompagner</h4><p>Support, évolutions et suivi dans la durée.</p></div>
+    </div>
+
+    <div class="commitments">
+      <div class="commit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3.5v5.3c0 5-3.4 8.6-8 10.2-4.6-1.6-8-5.2-8-10.2V5.5L12 2z"/></svg>Sécurité &amp; confidentialité</div>
+      <div class="commit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 3v3M16 3v3"/></svg>Planning clair</div>
+      <div class="commit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20c.9-4 3.8-6.2 7.5-6.2s6.6 2.2 7.5 6.2"/></svg>Accompagnement humain</div>
+      <div class="commit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>Budget maîtrisé</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. À PROPOS ============ -->
+<section class="section" style="background:var(--surface-2);" id="apropos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">À propos</span>
+      <h2>Des interlocuteurs accessibles, entre l'Europe et le Cameroun.</h2>
+      <p>AXALIS réunit des compétences techniques et une connaissance des réalités du terrain pour accompagner les entreprises et les entrepreneurs.</p>
+    </div>
+    <div class="people">
+      <div class="person">
+        <span class="avatar">A</span>
+        <div>
+          <h3>Axel</h3>
+          <span class="role">Développement &amp; relation projets</span>
+          <p class="bio">Cadrage des besoins, développement d'applications et suivi des projets côté Europe.</p>
+          <span class="loc">📍 France</span>
+        </div>
+      </div>
+      <div class="person">
+        <span class="avatar">A</span>
+        <div>
+          <h3>Alain</h3>
+          <span class="role">Développement &amp; architecture technique</span>
+          <p class="bio">Conception technique, automatisation et solutions adaptées aux contraintes de connexion.</p>
+          <span class="loc">📍 Italie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:40px;">
+      <span class="eyebrow">Contact</span>
+      <h2>Un projet, un besoin métier ou du renfort technique ?</h2>
+      <p>Décrivez-nous votre besoin, même si votre idée n'est pas encore complètement définie. Nous vous aiderons à préciser les prochaines étapes.</p>
+      <span class="badge" style="margin-top:16px;">Étude et devis gratuits</span>
+    </div>
+
+    <div class="contact-grid">
+      <form id="contact-form" onsubmit="event.preventDefault(); document.getElementById('contact-form').style.display='none'; document.getElementById('thanks').style.display='block';">
+        <div class="field"><label for="f-name">Nom</label><input id="f-name" type="text" placeholder="Votre nom" required></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" placeholder="vous@entreprise.com" required></div>
+        <div class="field"><label for="f-msg">Votre besoin</label><textarea id="f-msg" rows="4" placeholder="Décrivez votre projet, même brièvement…" required></textarea></div>
+        <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
+        <p class="form-note">Réponse sous 48h ouvrées. Aucune donnée n'est partagée avec des tiers.</p>
+      </form>
+      <div id="thanks" class="thanks">Merci — votre message est noté. Nous revenons vers vous sous 48h.</div>
+
+      <div class="contact-direct">
+        <div class="contact-row">
+          <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.5 2.1L8 10.1a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c1 .4 2 .6 3 .7a2 2 0 0 1 1.6 2.9z"/></svg></span>
+          <div><b>Axel — France</b><span>+33 6 87 79 84 30</span></div>
+        </div>
+        <div class="contact-row">
+          <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.5 2.1L8 10.1a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c1 .4 2 .6 3 .7a2 2 0 0 1 1.6 2.9z"/></svg></span>
+          <div><b>Alain — Italie</b><span>+39 351 943 0131</span></div>
+        </div>
+        <div class="contact-row">
+          <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+          <div><b>Email</b><span>contact@axalis.com</span></div>
+        </div>
+        <div class="contact-row">
+          <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-8.6 15l-1 4 4.1-1A10 10 0 1 0 12 2z"/><path d="M8.5 9.5c.3 2.8 2.7 5.2 5.5 5.5.9.1 1.6-.5 1.4-1.3l-.2-.9a.9.9 0 0 0-.6-.6l-1.4-.4a.9.9 0 0 0-.9.2l-.4.4a6 6 0 0 1-2.7-2.7l.4-.4a.9.9 0 0 0 .2-.9l-.4-1.4a.9.9 0 0 0-.6-.6l-.9-.2c-.8-.2-1.4.5-1.4 1.3z" fill="currentColor" stroke="none"/></svg></span>
+          <div><b>WhatsApp</b><span>Réponse rapide sur mobile</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="logo" href="#accueil">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 34L20 6L22.5 6L17 34L14 34Z" fill="var(--navy-900)"/>
+          <path d="M24 34L18 6L20.5 6L26.5 34L24 34Z" fill="var(--orange-500)"/>
+        </svg>
+        <span><span class="logo-word">AXAL<b>I</b>S</span><span class="logo-tag">Digital solutions &amp; development</span></span>
+      </a>
+      <ul class="foot-links">
+        <li><a href="#besoins">Besoins</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#difference">Différence</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#approche">Approche</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AXALIS — Cameroun · Europe</span>
+      <span>contact@axalis.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
