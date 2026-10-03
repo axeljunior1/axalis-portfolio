@@ -60,6 +60,7 @@ section{position:relative;}
 
 /* ---------- Logo ---------- */
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo svg{flex:none;}
 .logo-word{font-family:'Sora';font-weight:800;font-size:1.15rem;letter-spacing:.01em;color:var(--ink);}
 .logo-word b{color:var(--orange-500);}
 .logo-tag{font-family:'IBM Plex Mono';font-size:.56rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;display:block;margin-top:1px;}
@@ -85,7 +86,29 @@ header.site{
   transition:background .15s;
 }
 .nav-cta:hover,.nav-cta:focus-visible{background:var(--orange-500);}
-.nav-toggle{display:none;}
+.nav-toggle{
+  display:none;align-items:center;justify-content:center;
+  width:44px;height:44px;padding:0;flex:none;
+  border:1px solid var(--line);border-radius:8px;
+  background:var(--surface);color:var(--navy-900);cursor:pointer;
+  transition:background .15s, border-color .15s, color .15s;
+}
+.nav-toggle[aria-expanded="true"]{background:var(--navy-900);border-color:var(--navy-900);color:#fff;}
+
+/* ---------- Menu mobile ---------- */
+.mobile-menu{display:none;}
+.mobile-menu ul{list-style:none;margin:0;padding:0;}
+.mobile-menu li a{
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:54px;border-bottom:1px solid var(--line);
+  font-family:'Sora';font-weight:600;font-size:1.06rem;
+  color:var(--ink);text-decoration:none;
+}
+.mobile-menu li a svg{color:var(--neutral-400);transition:color .15s;}
+.mobile-menu li a:hover,.mobile-menu li a:focus-visible{color:var(--orange-500);}
+.mobile-menu li a:hover svg,.mobile-menu li a:focus-visible svg{color:var(--orange-500);}
+.mobile-menu-cta{width:100%;justify-content:center;min-height:52px;margin-top:22px;font-size:1rem;}
+.mobile-menu-backdrop{display:none;}
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -330,6 +353,16 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 0
 
 @media (max-width:900px){
   .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .nav-toggle{display:inline-flex;}
+  .mobile-menu.is-open{
+    display:block;position:absolute;top:100%;left:0;right:0;
+    max-height:calc(100dvh - 80px);overflow-y:auto;
+    background:var(--bg);padding:8px 28px 24px;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 18px 30px -18px rgba(10,27,47,.45);
+  }
+  .mobile-menu-backdrop{display:block;position:fixed;inset:0;z-index:40;background:rgba(10,27,47,.5);}
   .hero-grid{grid-template-columns:1fr;}
   .hero-visual{margin-top:40px;}
   .doors{grid-template-columns:1fr;}
