@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "axalis-site",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "4173"],
-      "port": 4173
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 4174
     }
   ]
 }

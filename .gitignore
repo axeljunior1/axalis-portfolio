@@ -1,3 +1,6 @@
+node_modules/
+dist/
+.vite/
 .idea/
 .DS_Store
 Thumbs.db

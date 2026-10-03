@@ -298,7 +298,7 @@ header.site{
 .contact-row b{display:block;font-size:.95rem;}
 .contact-row span{font-size:.82rem;color:var(--muted);}
 .form-note{margin-top:12px;font-size:.8rem;color:var(--muted);}
-.thanks{display:none;padding:14px 16px;background:var(--surface-2);border-radius:10px;font-size:.88rem;margin-top:10px;}
+.thanks{padding:14px 16px;background:var(--surface-2);border-radius:10px;font-size:.88rem;margin-top:10px;}
 
 /* ---------- Footer ---------- */
 footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 0 28px;}
