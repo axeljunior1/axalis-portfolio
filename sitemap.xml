@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://axalis.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://axalis.com/solutions/applications-web-mobiles.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://axalis.com/solutions/automatisation-metier.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://axalis.com/solutions/renfort-technique.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://axalis.com/solutions/maintenance-evolution.html</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
