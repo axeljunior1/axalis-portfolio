@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import heroIllustration from '../assets/hero-illustration.webp';
 
 export default function Hero() {
   return (
@@ -14,28 +15,14 @@ export default function Hero() {
             <Link className="btn btn-ghost" to="/#solutions">Découvrir nos solutions</Link>
           </div>
         </div>
-        <div style={{ position: 'relative' }}>
-          <div className="mock">
-            <div className="mock-bar"><span className="mock-dot"></span><span className="mock-dot"></span><span className="mock-dot"></span></div>
-            <div className="mock-body">
-              <div className="mock-side"><i></i><i></i><i></i><i></i><i></i></div>
-              <div className="mock-main">
-                <div className="mock-stat-row">
-                  <div className="mock-stat"><b>128</b><span>COMMANDES</span></div>
-                  <div className="mock-stat"><b>94%</b><span>SYNC OK</span></div>
-                  <div className="mock-stat"><b>12</b><span>EN LOCAL</span></div>
-                </div>
-                <div className="mock-chart">
-                  <i style={{ height: '40%' }}></i><i style={{ height: '65%' }}></i><i style={{ height: '35%' }}></i>
-                  <i style={{ height: '80%' }}></i><i style={{ height: '55%' }}></i><i style={{ height: '70%' }}></i><i style={{ height: '45%' }}></i>
-                </div>
-                <div className="mock-rows"><i></i><i></i><i></i></div>
-              </div>
-            </div>
-            <div className="mock-phone">
-              <div className="ph-screen"><i></i><i></i><i></i><i></i></div>
-            </div>
-          </div>
+        <div className="hero-visual">
+          <img
+            className="hero-image"
+            src={heroIllustration}
+            alt="Tableau de bord métier affiché sur ordinateur portable et mobile, connecté à des modules de stock, d'équipe, de documents et d'automatisation."
+            width="1680"
+            height="947"
+          />
         </div>
       </div>
     </section>

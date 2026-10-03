@@ -133,35 +133,9 @@ header.site{
 .hero p.lead{font-size:1.08rem;color:var(--muted);max-width:46ch;margin-top:20px;}
 .hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
 
-/* fake app mockup */
-.mock{
-  background:var(--surface);border-radius:16px;padding:18px;
-  border:1px solid var(--line);box-shadow:var(--shadow);position:relative;
-}
-.mock-bar{display:flex;gap:6px;margin-bottom:14px;}
-.mock-dot{width:9px;height:9px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);}
-.mock-body{display:grid;grid-template-columns:84px 1fr;gap:12px;}
-.mock-side{display:flex;flex-direction:column;gap:10px;}
-.mock-side i{height:9px;border-radius:4px;background:var(--surface-2);}
-.mock-side i:first-child{background:var(--orange-500);}
-.mock-main{display:flex;flex-direction:column;gap:10px;}
-.mock-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.mock-stat{background:var(--surface-2);border-radius:8px;padding:10px;}
-.mock-stat b{display:block;font-family:'Sora';color:var(--ink);font-size:1rem;}
-.mock-stat span{font-size:.62rem;color:var(--muted);font-family:'IBM Plex Mono';}
-.mock-chart{background:var(--surface-2);border-radius:8px;padding:12px;display:flex;align-items:flex-end;gap:5px;height:84px;}
-.mock-chart i{flex:1;background:var(--orange-500);border-radius:3px 3px 0 0;opacity:.85;}
-.mock-chart i:nth-child(2n){background:var(--neutral-400);opacity:.8;}
-.mock-rows{background:var(--surface-2);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:7px;}
-.mock-rows i{height:7px;border-radius:3px;background:var(--line);}
-.mock-rows i:nth-child(1){width:88%;} .mock-rows i:nth-child(2){width:64%;} .mock-rows i:nth-child(3){width:74%;}
-.mock-phone{
-  position:absolute;bottom:-26px;left:-30px;width:108px;background:var(--surface);
-  border-radius:14px;padding:8px;box-shadow:var(--shadow);border:1px solid var(--line);
-}
-.mock-phone .ph-screen{background:var(--surface-2);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:5px;border:1px solid var(--line);}
-.mock-phone .ph-screen i{height:5px;border-radius:2px;background:var(--line);}
-.mock-phone .ph-screen i:first-child{background:var(--orange-500);width:40%;}
+/* hero illustration */
+.hero-visual{display:flex;align-items:center;justify-content:center;}
+.hero-image{width:100%;height:auto;max-width:620px;}
 
 /* ---------- Section scaffolding ---------- */
 .section{padding:88px 0;border-top:1px solid var(--line);}
@@ -357,7 +331,7 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:48px 0
 @media (max-width:900px){
   .nav-links{display:none;}
   .hero-grid{grid-template-columns:1fr;}
-  .mock{margin-top:40px;}
+  .hero-visual{margin-top:40px;}
   .doors{grid-template-columns:1fr;}
   .axes{grid-template-columns:1fr 1fr;}
   .diff-grid{grid-template-columns:1fr;}
